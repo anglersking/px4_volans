@@ -91,5 +91,11 @@ COPY ./gazebo_opticalflow_plugin.h /volans/Firmware/Tools/sitl_gazebo/include/ga
 # RUN cd volans && cd Firmware &&\
 #   make px4_sitl_default gazebo -j100
 
-# RUN  ./PX4-Autopilot/Tools/setup/ubuntu.sh
+# RUN  ./PX4-Autopilot/Tools/setup/ubuntu.sh  cd /volans/src/sup/path_planning/path_planning/
 
+RUN apt-get install -y ros-melodic-ddynamic-reconfigure ros-melodic-ar-track-alvar* ros-melodic-velodyne-gazebo-plugins  ros-melodic-moveit  ros-melodic-nav-core ros-melodic-move-base ros-melodic-cv-bridge
+RUN apt-get -y install libfcl-dev libompl-dev
+RUN apt-get install -y ros-melodic-octomap-*
+RUN cp -a /opt/ros/melodic/include/ompl-1.4/ompl /opt/ros/melodic/include/
+RUN apt-get update && apt-get install -y gnome-terminal
+# RUN cd /volans && catkin build simulation px4_control ros_slam octomap ros_vision path_planning explore_lite 
